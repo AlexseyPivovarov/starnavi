@@ -193,5 +193,4 @@ Available Endponits:
     The endpoint that will update the unlikes counter in the post, only for registered users
     ><title> - the title of the post you want to update    
   
-    >Receive request with {"Authorization": "Bearer access_token"} in headers   
-    Will return an updated post if successful or an error message if something went wrong, as Json   
+    >The endpoint behaves the same as the edpoint described above, except that it updates the unlike counter   
