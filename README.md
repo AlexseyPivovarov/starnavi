@@ -167,8 +167,27 @@ Available Endponits:
     The endpoint that will update the likes counter in the post, only for registered users
     ><title> - the title of the post you want to update    
   
-    >Receive request with {"Authorization": "Bearer access_token"} in headers   
-    Will return an updated post if successful or an error message if something went wrong, as Json   
+    >Receive request with hearers
+    ```json
+    {
+        "Authorization": "Bearer access_token"
+    }
+    ```   
+    >Will return an updated post if successful and http response status code 200 (OK)
+    ```json
+    {
+        "title": "title",
+        "like": 1,
+        "unlike": 0
+    }
+    ```
+    >Or, if reseived title of the post not found, will return http response status code 404 (Not Found) and Json like
+    ```json
+    {
+        "detail": "Not found."
+    }
+    ```
+    >Or, if reseived token not valid, will return http response status code 401 (Unauthorized) and Json like endpoint above
 
 - PATCH /posts/unlike/<title>/    
     The endpoint that will update the unlikes counter in the post, only for registered users
