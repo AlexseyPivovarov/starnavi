@@ -85,11 +85,47 @@ Available Endponits:
 
 - POST /auth/register/    
     The endpoint that will register the new user
-    >Receive request with {"username": "user_mail", "password": "user_password"} as data     
-    Will return a created user info if successful or an error message if something went wrong, as Json
-    >>It is optionally possible to connect mail validation via clearbit.com  
-    by setting the value of the CLEARBIT_CHECK = True, that constant in the module settings.py
-
+    >Receive request with Json like
+    ```json
+    {
+        "username": "some_name",
+        "password": "some_password"
+    }
+    ```    
+    >Will return http response status code 201 (Created) and Json with created user info, like 
+    ```json
+    {
+        "username": "some_name",
+        "password": "some_password"
+    }
+    ```
+    >Or, if no valid email went reseiver, will return http response status code 400 (Bad Request) and Json like
+    ```json
+    {
+        "username": [
+            "Enter a valid email address."
+        ]
+    }
+    ```
+    >Or, if A user with that email already exists, will return http response status code 400 (Bad Request) and Json like
+    ```json
+    {
+        "username": [
+            "A user with that username already exists."
+        ]
+    }
+    ```
+     >It is optionally possible to connect mail validation via clearbit.com by setting the value of the  
+     CLEARBIT_CHECK = True, that constant in the module settings.py  
+     If the email did not pass validation by clearbit.com, will return http response status code 500 (Internal Server Error) and Json like
+    ```json
+    {
+        "Error": [
+            "The given email is invalid"
+        ]
+    }
+    ```
+    
 - POST /posts/add/    
     The endpoint that will create the new post, for registered users only
     >Receive request with {"title": "some_title", "body": "some_body"} as data    
