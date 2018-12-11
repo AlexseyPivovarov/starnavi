@@ -38,8 +38,20 @@ Available Endponits:
 
 - POST /auth/login/   
     Login endpoint
-    >Receive request with {"username": "some_name", "password": "some_password"} as data    
-    Will return Json with JWT, like {"access": "access_token", "refresh": "refresh_token"}
+    >Receive request with Json like  
+    ```json
+    {
+        "username": "some_name",
+        "password": "some_password"
+    }
+    ```   
+    >Will return Json with JWT, like  
+    ```json
+    {
+        "access": "access_token",
+        "refresh": "refresh_token"
+    }
+    ```
     
 - POST /auth/login/refresh/       
     The endpoint that will refresh the token
