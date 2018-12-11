@@ -45,11 +45,19 @@ Available Endponits:
         "password": "some_password"
     }
     ```   
-    >Will return http response status code 200, OK and Json with JWT, like  
+    >Will return http response status code 200 (OK) and Json with JWT, like  
     ```json
     {
         "access": "access_token",
         "refresh": "refresh_token"
+    }
+    ```
+    >Or, if no active account found with the given credentials, will return http response status code 400 (Bad Request) and Json like
+    ```json
+    {
+        "non_field_errors": [
+            "No active account found with the given credentials"
+        ]
     }
     ```
     
