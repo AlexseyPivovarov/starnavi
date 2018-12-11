@@ -63,8 +63,25 @@ Available Endponits:
     
 - POST /auth/login/refresh/       
     The endpoint that will refresh the token
-    >Receive request with {"refresh": "refresh_token"} as data    
-    Will return Json with new access token, like {"access": "access_token"}
+    >Receive request with Json like
+    ```json
+    {
+        "refresh": "refresh_token"
+    }
+    ```    
+    >Will return http response status code 200 (OK) and Json with new access token, like 
+    ```json
+    {
+        "access": "access_token"
+    }
+    ```
+    >Or, if wrong access token went reseiver, will return http response status code 401 (Unauthorized) and Json like
+    ```json
+    {
+        "detail": "Token is invalid or expired",
+        "code": "token_not_valid"
+    }
+    ```
 
 - POST /auth/register/    
     The endpoint that will register the new user
