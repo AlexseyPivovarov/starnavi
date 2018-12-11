@@ -45,7 +45,7 @@ Available Endponits:
         "password": "some_password"
     }
     ```   
-    >Will return Json with JWT, like  
+    >Will return http response status code 200, OK and Json with JWT, like  
     ```json
     {
         "access": "access_token",
