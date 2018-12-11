@@ -20,7 +20,7 @@ create database django_db owner django_db_user;
 ```
 git clone https://github.com/AlexseyPivovarov/starnavi
 cd starnavi/
-pip install -r requarements.txt
+pip3 install -r requarements.txt
 python manage.py migrate
 python manage.py createsuperuser
 ```
