@@ -128,10 +128,41 @@ Available Endponits:
     
 - POST /posts/add/    
     The endpoint that will create the new post, for registered users only
-    >Receive request with {"title": "some_title", "body": "some_body"} as data    
-    and {"Authorization": "Bearer access_token"} in headers   
-    Will return a created post if successful or an error message if something went wrong, as Json   
-
+    >Receive request with data
+    ```json
+    {
+        "title": "some_title", 
+        "body": "some_body"
+    }
+    ```    
+    >and headers 
+    ```json
+    {
+        "Authorization": "Bearer access_token"
+    }
+    ```   
+    >Will return http response status code 201 (Created) and Json with created post if successful
+    ```json
+    {
+        "title": "some_title", 
+        "body": "some_body"
+    }
+    ```
+    >Or, if reseived token not valid, will return http response status code 401 (Unauthorized) and Json like
+    ```json
+    {
+        "detail": "Given token not valid for any token type",
+        "code": "token_not_valid",
+        "messages": [
+            {
+                "token_class": "AccessToken",
+                "token_type": "access",
+                "message": "Token is invalid or expired"
+            }
+        ]
+    }
+    ```
+    
 - PATCH /posts/like/<title>/    
     The endpoint that will update the likes counter in the post, only for registered users
     ><title> - the title of the post you want to update    
